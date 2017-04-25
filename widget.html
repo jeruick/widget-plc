@@ -40,10 +40,29 @@
         <div class="panel-heading ">
 
             <div class="btn-toolbar pull-right" role="toolbar">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-xs btn-default btn-sayhello" data-delay="1000" data-animation="true" data-placement="auto" data-container="body" data-trigger="hover" data-title="Say Hello" data-content="Generate a hello message">Say Hello
-                    </button>
+                
+            
+                <div id="com-chilipeppr-ws-plc-instructions" xstyle="margin-right:6px;" class="pull-left"></div>
+                            
+                <div class="dropdown pull-left">
+                  <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Instrucciones
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                     
+                    <li>
+                        <div class="input-group">
+                          <textarea class="form-control paste-load-plc" placeholder="Paste PLC code Here" style="font-size:10px;" rows="3"></textarea>
+                          <span class="input-group-btn" style="vertical-align: top;">
+                                    <button class="btn btn-default paste-load-plc-go" style="" type="button" data-original-title="" title="">Go!</button>
+                                </span>
+                        </div>
+                    </li>
+                
+                  </ul>
                 </div>
+                
                 <div class="btn-group">
                     <button type="button" class="btn btn-xs btn-default hidebody"><span class="glyphicon glyphicon-chevron-up"></span>
                     </button>
@@ -55,7 +74,7 @@
                         <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
                     </div>
                 </div>
-            </div> <span class="panel-title" data-toggle="popover">PLC Widget</span> <span style="font-size:9px;" class="fb-build">v1</span>
+            </div> <span class="panel-title" data-toggle="popover">PLC Widget</span> 
 
         </div>
         <div class="panel-body">
