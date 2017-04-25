@@ -136,8 +136,15 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             this.setupUiFromLocalStorage();
             this.btnSetup();
             this.forkSetup();
+            this.loadPLCInstructions();
 
             console.log("I am done being initted.");
+        },
+        loadPLCInstructions: function(){
+            if(localStorage.getItem('plcInstructions')){
+                $("#instructions-code").val(localStorage.getItem('plcInstructions'));      
+            }
+          
         },
         /**
          * Call this method from init to setup all the buttons when this widget
@@ -192,20 +199,25 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // Init Hello World 2 button on Tab 1. Notice the use
             // of the slick .bind(this) technique to correctly set "this"
             // when the callback is called
-            $('.paste-load-plc-go').click(this.onHelloBtnClick.bind(this));
+            $('#saveInstructions').click(this.onHelloBtnClick.bind(this));
+            
 
         },
         /**
          * onHelloBtnClick is an example of a button click event callback
          */
         onHelloBtnClick: function(evt) {
-            console.log("saying hello 2 from btn in tab 1");
-            chilipeppr.publish(
-                '/com-chilipeppr-elem-flashmsg/flashmsg',
-                "Hello 2 Title",
-                "Hello World 2 from Tab 1 from widget " + this.id,
-                2000 /* show for 2 second */
-            );
+            var instructions = $('#instructions-code').val();
+            if(instructions)
+            {
+                console.log("saying hello 2 from btn in tab 1");
+                $('#myPLCModal').modal('toggle');
+                
+                localStorage.setItem('plcInstructions', instructions);    
+                
+                
+            }
+            
         },
         /**
          * User options are available in this property for reference by your

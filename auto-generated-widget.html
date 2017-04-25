@@ -167,8 +167,15 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             this.setupUiFromLocalStorage();
             this.btnSetup();
             this.forkSetup();
+            this.loadPLCInstructions();
 
             console.log("I am done being initted.");
+        },
+        loadPLCInstructions: function(){
+            if(localStorage.getItem('plcInstructions')){
+                $("#instructions-code").val(localStorage.getItem('plcInstructions'));      
+            }
+          
         },
         /**
          * Call this method from init to setup all the buttons when this widget
@@ -223,20 +230,25 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // Init Hello World 2 button on Tab 1. Notice the use
             // of the slick .bind(this) technique to correctly set "this"
             // when the callback is called
-            $('.paste-load-plc-go').click(this.onHelloBtnClick.bind(this));
+            $('#saveInstructions').click(this.onHelloBtnClick.bind(this));
+            
 
         },
         /**
          * onHelloBtnClick is an example of a button click event callback
          */
         onHelloBtnClick: function(evt) {
-            console.log("saying hello 2 from btn in tab 1");
-            chilipeppr.publish(
-                '/com-chilipeppr-elem-flashmsg/flashmsg',
-                "Hello 2 Title",
-                "Hello World 2 from Tab 1 from widget " + this.id,
-                2000 /* show for 2 second */
-            );
+            var instructions = $('#instructions-code').val();
+            if(instructions)
+            {
+                console.log("saying hello 2 from btn in tab 1");
+                $('#myPLCModal').modal('toggle');
+                
+                localStorage.setItem('plcInstructions', instructions);    
+                
+                
+            }
+            
         },
         /**
          * User options are available in this property for reference by your
@@ -390,28 +402,35 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         <div class="panel-heading ">
 
             <div class="btn-toolbar pull-right" role="toolbar">
-                
-            
-                <div id="com-chilipeppr-ws-plc-instructions" xstyle="margin-right:6px;" class="pull-left"></div>
-                            
-                <div class="dropdown pull-left">
-                  <button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Instrucciones
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                     
-                    <li>
-                        <div class="input-group">
-                          <textarea class="form-control paste-load-plc" placeholder="Paste PLC code Here" style="font-size:10px;" rows="3"></textarea>
-                          <span class="input-group-btn" style="vertical-align: top;">
-                                    <button class="btn btn-default paste-load-plc-go" style="" type="button" data-original-title="" title="">Go!</button>
-                                </span>
-                        </div>
-                    </li>
-                
-                  </ul>
+                <div class="pull-left" >
+                    <!-- Button trigger modal -->
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myPLCModal">
+                  Load Instructions
+                </button>    
                 </div>
+                
+                
+                <!-- Modal -->
+                <div class="modal fade" id="myPLCModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">PLC Instructions</h4>
+                      </div>
+                      <div class="modal-body">
+                        <textarea name="instructions-code" class="form-control" id="instructions-code" cols="30" rows="10"></textarea>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="saveInstructions">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+
+              
                 
                 <div class="btn-group">
                     <button type="button" class="btn btn-xs btn-default hidebody"><span class="glyphicon glyphicon-chevron-up"></span>
@@ -431,7 +450,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             <div class="col-xs-12">
                 <h4>Herramienta Actual: <span name="current-tool" class="current-tool" id="current-tool">T2</span></h4>
                 <ul class="list-group scrollable-menu" id="plc-console">
-                 
+                     
                 </ul>
             </div>
         </div>
