@@ -208,6 +208,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
          
           localStorage.removeItem("plcInstructions"); 
           $('#myPLCModal textarea').val('');
+          chilipeppr.publish(
+                "/com-chilipeppr-elem-flashmsg/flashmsg",
+                "PLC Instructions",
+                "PLC Instructions Cleared.",
+                1000
+            );
         },
         /**
          * onHelloBtnClick is an example of a button click event callback
