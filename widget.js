@@ -199,19 +199,20 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // Init Hello World 2 button on Tab 1. Notice the use
             // of the slick .bind(this) technique to correctly set "this"
             // when the callback is called
-            $('#saveInstructions').click(this.onHelloBtnClick.bind(this));
+            $('#saveInstructions').click(this.onSaveInstructions.bind(this));
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
             
 
         },
         onClearInstructionsClick: function(evt){
-            alert("click");
-          localStorage.removeItem("plcInstructions");  
+         
+          localStorage.removeItem("plcInstructions"); 
+          $('#myPLCModal textarea').val('');
         },
         /**
          * onHelloBtnClick is an example of a button click event callback
          */
-        onHelloBtnClick: function(evt) {
+        onSaveInstructions: function(evt) {
             var instructions = $('#instructions-code').val();
             if(instructions)
             {
