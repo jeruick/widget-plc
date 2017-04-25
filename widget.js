@@ -200,8 +200,13 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // of the slick .bind(this) technique to correctly set "this"
             // when the callback is called
             $('#saveInstructions').click(this.onHelloBtnClick.bind(this));
+            $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
             
 
+        },
+        onClearInstructionsClick: function(evt){
+            alert("click");
+          localStorage.removeItem("plcInstructions");  
         },
         /**
          * onHelloBtnClick is an example of a button click event callback
