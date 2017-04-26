@@ -41,36 +41,11 @@
 
             <div class="btn-toolbar pull-right" role="toolbar">
                 <div class="pull-left" >
-                    <!-- Button trigger modal -->
-                <button type="button" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myPLCModal">
-                  Load Instructions
-                </button> 
+                            
                 <button type="button" class="btn btn-xs btn-default" id="clearInstructions"><i class="glyphicon glyphicon-trash"></i></button>
                 </div>
-                
-                
-                <!-- Modal -->
-                <div class="modal fade" id="myPLCModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">PLC Instructions</h4>
-                      </div>
-                      <div class="modal-body">
-                        <textarea name="instructions-code" class="form-control" id="instructions-code" cols="30" rows="10" autocomplete="off"></textarea>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="saveInstructions">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+               
 
-              
-                
                 <div class="btn-group">
                     <button type="button" class="btn btn-xs btn-default hidebody"><span class="glyphicon glyphicon-chevron-up"></span>
                     </button>
@@ -87,9 +62,11 @@
         </div>
         <div class="panel-body">
             <div class="col-xs-12">
-                <h4>Herramienta Actual: <span name="current-tool" class="current-tool" id="current-tool">T2</span></h4>
+                <h4>Herramienta Actual: <span name="current-tool" class="current-tool" id="current-tool">0</span></h4>
                 <ul class="list-group scrollable-menu" id="plc-console">
-                     
+                     <li>hola</li>
+                     <li>hola</li>
+                     <li>hola</li>
                 </ul>
             </div>
         </div>
