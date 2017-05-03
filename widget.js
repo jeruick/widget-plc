@@ -201,6 +201,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
+            $('#plcHome').click(this.onPlcHomeClick.bind(this));
             
 
         },
@@ -213,6 +214,17 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 "PLC Instructions Cleared.",
                 1000
             );
+        },
+        onPlcHomeClick: function(evt){
+         
+          chilipeppr.publish(
+                "/com-chilipeppr-elem-flashmsg/flashmsg",
+                "PLC HOME",
+                "Wait while PLC is making home.",
+                1000
+            );
+            
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM9  a\n");			
         },
         /**
          * User options are available in this property for reference by your
