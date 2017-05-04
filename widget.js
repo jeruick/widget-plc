@@ -201,7 +201,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
-            $('#plcHome').click(this.onPlcHomeClick.bind(this));
+            $('#joghomem').click(this.onPlcHomeClick.bind(this));
             
 
         },
