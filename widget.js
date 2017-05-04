@@ -201,7 +201,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
-            $('.joghomem').click(this.onPlcHomeClick.bind(this));
+            $('#plcHome').click(this.onPlcHomeClick.bind(this));
             $('#com-chilipeppr-widget-xyz-ftr .joghomem').click("xyz", this.homePLC.bind(this));
 
         },
@@ -212,7 +212,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
                 "PLC Instructions",
                 "PLC Instructions Cleared.",
-                1000
+                2000
             );
         },
         onPlcHomeClick: function(evt){
@@ -221,10 +221,10 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
                 "PLC HOME",
                 "Wait while PLC is making home.",
-                1000
+                2000
             );
             
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM9  a\n");			
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/tty.usbmodem1421  a\n");			
         },
         homePLC: function(evt){
          console.log('HOME PLC');
