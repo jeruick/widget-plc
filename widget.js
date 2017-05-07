@@ -201,8 +201,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
-            $('#plcHome').click(this.onPlcHomeClick.bind(this));
-            $('#com-chilipeppr-widget-xyz-ftr .joghomem').click("xyz", this.homePLC.bind(this));
+            
 
         },
         onClearInstructionsClick: function(evt){
@@ -226,17 +225,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             
             chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/tty.usbmodem1421  a\n");			
         },
-        homePLC: function(evt){
-         console.log('HOME PLC');
-          chilipeppr.publish(
-                "/com-chilipeppr-elem-flashmsg/flashmsg",
-                "PLC HOME",
-                "Wait while PLC is making home.",
-                1000
-            );
-            
-            
-        },
+        
         /**
          * User options are available in this property for reference by your
          * methods. If any change is made on these options, please call
