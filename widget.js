@@ -212,7 +212,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         onGcodePause: function(evt){
             console.log('mi pausa');
             var index = localStorage.getItem('index');
-            localStorage.setItem('index', index++);
+            index++;
+            localStorage.setItem('index', index);
         },
         onClearInstructionsClick: function(evt){
          
