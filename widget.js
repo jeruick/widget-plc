@@ -201,19 +201,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
-            $('#com-chilipeppr-widget-gcode-pause').click(this.onGcodePause.bind(this));
-            $('#com-chilipeppr-widget-gcode-stop').click(this.onGcodeStop.bind(this));
+           
 
-        },
-        onGcodeStop: function(evt){
-            console.log('mi pausa');
-            localStorage.setItem('index', 0);
-        },
-        onGcodePause: function(evt){
-            console.log('mi pausa');
-            var index = localStorage.getItem('index');
-            index++;
-            localStorage.setItem('index', index);
         },
         onClearInstructionsClick: function(evt){
          
