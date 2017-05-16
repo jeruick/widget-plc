@@ -201,6 +201,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
+            
+            $('.select-pocket').change(this.onSelectPocket.bind(this));
            
 
         },
@@ -214,6 +216,18 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 2000
             );
         },
+        onSelectPocket: function(evt){
+            var pocket = $(".select-pocket").val();
+            chilipeppr.publish(
+                "/com-chilipeppr-elem-flashmsg/flashmsg",
+                "Select Pocket",
+                "Pocket " + pocket  + " Selected",
+                2000
+            );
+            
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM6 " + pocket + "\n");			
+        }
+        ,
         onPlcHomeClick: function(evt){
          
           chilipeppr.publish(
