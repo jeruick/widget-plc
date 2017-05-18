@@ -225,7 +225,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 2000
             );
             
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM6 " + pocket + "\n");			
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM6 i" + pocket + "\n");			
         }
         ,
         onPlcHomeClick: function(evt){
