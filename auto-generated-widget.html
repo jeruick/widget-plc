@@ -350,6 +350,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     $(name).attr('content', newStatus);
                     if(name == '#carusel'){
                         if(newStatus == 1) $('.select-pocket').removeAttr('disabled');
+                        else $('.select-pocket').attr('disabled', 'disabled')
                     }
                 } 
             })
