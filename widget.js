@@ -166,9 +166,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 if(res){
                    localStorage.setItem('statusPlc', res);
                     res = JSON.parse(res);
-                    status = (parseInt(res.carusel) == 1) ? "Contraer" : "Liberar";
+                    status = (parseInt(res.carrusel) == 1) ? "Contraer" : "Liberar";
                     $('#carusel span').html(status);
-                    $('#carusel').attr('content',res.carusel);
+                    $('#carusel').attr('content',res.carrusel);
                     status = (parseInt(res.brazo) == 1) ? "Contraer" : "Liberar";
                     $('#brazo span').html(status);
                     $('#brazo').attr('content',res.brazo);
@@ -274,13 +274,6 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var cmd = (parseInt(status) == 1) ? 2 : 1;
             
             this.sendToPlc(name, cmd, parseInt(status));
-        
-           chilipeppr.publish(
-                "/com-chilipeppr-elem-flashmsg/flashmsg",
-                "Change Status",
-                element,
-                2000
-            );
           
         },
         
@@ -292,13 +285,6 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             
             this.sendToPlc(name, cmd, parseInt(status));	
           
-           chilipeppr.publish(
-                "/com-chilipeppr-elem-flashmsg/flashmsg",
-                "Change Status",
-                element,
-                2000
-            );
-          
         },
         
         onChangeHusillo: function(evt){
@@ -308,13 +294,6 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var cmd = (parseInt(status) == 1) ? 6 : 5;
             
             this.sendToPlc(name, cmd, parseInt(status));	
-          
-           chilipeppr.publish(
-                "/com-chilipeppr-elem-flashmsg/flashmsg",
-                "Change Status",
-                element,
-                2000
-            );
           
         },
         
