@@ -157,7 +157,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             .done(function(res){
                  chilipeppr.publish(
                     "/com-chilipeppr-elem-flashmsg/flashmsg",
-                    "STATUS",
+                    "ESTADO DEL PLC",
                     res,
                     2000
                 );
