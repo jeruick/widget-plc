@@ -199,6 +199,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     res = JSON.parse(res);
                     status = (parseInt(res.carrusel) == 1) ? "Contraer" : "Liberar";
                     $('#carusel span').html(status);
+                    if(status) $('.select-pocket').attr('disabled');
                     $('#carusel').attr('content',res.carrusel);
                     status = (parseInt(res.brazo) == 1) ? "Contraer" : "Liberar";
                     $('#brazo span').html(status);
@@ -347,6 +348,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     var newMessage = (status == 1) ? "Liberar " : "Contraer";
                     $(name + " span").html(newMessage);
                     $(name).attr('content', newStatus);
+                    if(name == '#carusel'){
+                        if(newStatus == 1) $('.select-pocket').removeAttr('disabled');
+                    }
                 } 
             })
             .fail(function(err){
