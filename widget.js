@@ -167,18 +167,20 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     res,
                     2000
                 );
-                console.log("estados");
-                macro.status(res);
-                res = JSON.parse(res);
-                status = res.carusel ? "Contraer Carusel" : "Liberar Carusel";
-                $('#carusel span').html(status);
-                $('#carusel').attr('content',res.carusel);
-                status = res.brazo ? "Contraer Brazo" : "Liberar Brazo";
-                $('#brazo span').html(status);
-                $('#brazo').attr('content',res.brazo);
-                status = res.husillo ? "Contraer Husillo" : "Liberar Husillo";
-                $('#husillo span').html(status);
-                $('#husillo').attr('content',res.husillo);
+                if(res){
+                    macro.status(res);
+                    res = JSON.parse(res);
+                    status = (parseInt(res.carusel) == 1) ? "Contraer" : "Liberar";
+                    $('#carusel span').html(status);
+                    $('#carusel').attr('content',res.carusel);
+                    status = (parseInt(res.brazo) == 1) ? "Contraer" : "Liberar";
+                    $('#brazo span').html(status);
+                    $('#brazo').attr('content',res.brazo);
+                    status = (parseInt(res.husillo) == 1) ? "Contraer" : "Liberar";
+                    $('#husillo span').html(status);
+                    $('#husillo').attr('content',res.husillo);    
+                }
+                
             })
             .fail(function(err){
                 console.log(err);
@@ -305,7 +307,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         
         onChangeHusillo: function(evt){
          
-        var status = $('#husillo').attr('content');	
+            var status = $('#husillo').attr('content');	
             var name = "#husillo";
             var cmd = (parseInt(status) == 1) ? 6 : 5;
             
