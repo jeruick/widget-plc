@@ -149,9 +149,23 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         },
         
         loadButtonsStatus: function(){
-          $('#piston').html('Liberar Pistones');
-          $('#brazo').html('Bloquear Brazo');
-          $('#husillo').html('Contraer husillo');
+            var status;
+            $.ajax({
+                url: 'http://192.168.0.97?cmd=s',
+                method: 'GET'
+            })
+            .done(function(res){
+                status = res.carusel ? "Liberar Carusel" : "Contraer Carusel";
+                $('#carusel').html(status);
+                status = res.brazo ? "Liberar Brazo" : "Contraer Brazo";
+                $('#brazo').html(status);
+                status = res.husillo ? "Liberar Husillo" : "Contraer Husillo";
+                $('#husillo').html(status);
+            })
+            .fail(function(err){
+                console.log(err);
+            });
+          
         },
         /**
          * Call this method from init to setup all the buttons when this widget

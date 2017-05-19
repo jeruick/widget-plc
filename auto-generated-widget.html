@@ -180,9 +180,23 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         },
         
         loadButtonsStatus: function(){
-          $('#piston').html('Liberar Pistones');
-          $('#brazo').html('Bloquear Brazo');
-          $('#husillo').html('Contraer husillo');
+            var status;
+            $.ajax({
+                url: 'http://192.168.0.97?cmd=s',
+                method: 'GET'
+            })
+            .done(function(res){
+                status = res.carusel ? "Liberar Carusel" : "Contraer Carusel";
+                $('#carusel').html(status);
+                status = res.brazo ? "Liberar Brazo" : "Contraer Brazo";
+                $('#brazo').html(status);
+                status = res.husillo ? "Liberar Husillo" : "Contraer Husillo";
+                $('#husillo').html(status);
+            })
+            .fail(function(err){
+                console.log(err);
+            });
+          
         },
         /**
          * Call this method from init to setup all the buttons when this widget
@@ -450,13 +464,13 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             
             <div class="row">
                 <div style="margin-bottom: 2px" class="pull-left">
-                    <button type="button" class="btn btn-xs btn-default status-button" id="piston">Contraer Pistones</button>
+                    <button type="button" class="btn btn-xs btn-default status-button" id="carusel">Estado Carusel</button>
                 </div>
                 <div style="margin-bottom: 2px" class="pull-left">
-                    <button type="button" class="btn btn-xs btn-default status-button" id="brazo">Desbloquear Brazo</button>
+                    <button type="button" class="btn btn-xs btn-default status-button" id="brazo">Estado Brazo</button>
                 </div>
                 <div style="margin-bottom: 2px" class="pull-left">
-                    <button type="button" class="btn btn-xs btn-default status-button" id="husillo">Liberar husillo</button>
+                    <button type="button" class="btn btn-xs btn-default status-button" id="husillo">Estado Husillo</button>
                 </div>
             </div>
 
