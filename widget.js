@@ -137,6 +137,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             this.btnSetup();
             this.forkSetup();
             this.loadPLCInstructions();
+            this.loadButtonsStatus();
 
             console.log("I am done being initted.");
         },
@@ -145,6 +146,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 $("#instructions-code").val(localStorage.getItem('plcInstructions'));      
             }
           
+        },
+        
+        loadButtonsStatus: function(){
+          $('#piston').html('Liberar Pistones');
+          $('#brazo').html('Bloquear Brazo');
+          $('#husillo').html('Contraer husillo');
         },
         /**
          * Call this method from init to setup all the buttons when this widget

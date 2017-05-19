@@ -168,6 +168,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             this.btnSetup();
             this.forkSetup();
             this.loadPLCInstructions();
+            this.loadButtonsStatus();
 
             console.log("I am done being initted.");
         },
@@ -176,6 +177,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 $("#instructions-code").val(localStorage.getItem('plcInstructions'));      
             }
           
+        },
+        
+        loadButtonsStatus: function(){
+          $('#piston').html('Liberar Pistones');
+          $('#brazo').html('Bloquear Brazo');
+          $('#husillo').html('Contraer husillo');
         },
         /**
          * Call this method from init to setup all the buttons when this widget
@@ -443,13 +450,13 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             
             <div class="row">
                 <div style="margin-bottom: 2px" class="pull-left">
-                    <button type="button" class="btn btn-xs btn-default" id="piston">Contraer Pistones</button>
+                    <button type="button" class="btn btn-xs btn-default status-button" id="piston">Contraer Pistones</button>
                 </div>
                 <div style="margin-bottom: 2px" class="pull-left">
-                    <button type="button" class="btn btn-xs btn-default" id="brazo">Desbloquear Brazo</button>
+                    <button type="button" class="btn btn-xs btn-default status-button" id="brazo">Desbloquear Brazo</button>
                 </div>
                 <div style="margin-bottom: 2px" class="pull-left">
-                    <button type="button" class="btn btn-xs btn-default" id="husillo">Liberar husillo</button>
+                    <button type="button" class="btn btn-xs btn-default status-button" id="husillo">Liberar husillo</button>
                 </div>
             </div>
 
