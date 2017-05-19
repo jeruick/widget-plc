@@ -137,7 +137,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             this.btnSetup();
             this.forkSetup();
             this.loadPLCInstructions();
-            this.loadButtonsStatus();
+            setTimeout(this.loadButtonsStatus, 2000);
+            
 
             console.log("I am done being initted.");
         },
@@ -272,7 +273,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var name = "#brazo";
             var cmd = (parseInt(status) == 1) ? 2 : 1;
             
-            sendToPlc(name, cmd, parseInt(status));
+            this.sendToPlc(name, cmd, parseInt(status));
         
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
@@ -289,7 +290,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var name = "#carusel";
             var cmd = (parseInt(status) == 1) ? 4 : 3;
             
-            sendToPlc(name, cmd, parseInt(status));	
+            this.sendToPlc(name, cmd, parseInt(status));	
           
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
@@ -306,7 +307,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var name = "#husillo";
             var cmd = (parseInt(status) == 1) ? 6 : 5;
             
-            sendToPlc(name, cmd, parseInt(status));	
+            this.sendToPlc(name, cmd, parseInt(status));	
           
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
@@ -323,6 +324,13 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             method: 'GET'
             })
             .done(function(res){
+                chilipeppr.publish(
+                    "/com-chilipeppr-elem-flashmsg/flashmsg",
+                    "Change Status",
+                    res,
+                    2000
+                );
+                res = JSON.parse(res);
                 if(res.status){
                     var newStatus = (status == 1) ? 0 : 1;
                     var newMessage = (status == 1) ? "Contraer " : "Liberar";
