@@ -186,6 +186,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 method: 'GET'
             })
             .done(function(res){
+                res = JSON.parse(res);
                 status = res.carusel ? "Liberar Carusel" : "Contraer Carusel";
                 $('#carusel').html(status);
                 status = res.brazo ? "Liberar Brazo" : "Contraer Brazo";
