@@ -168,7 +168,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     2000
                 );
                 if(res){
-                   
+                   localStorage.setItem('statusPlc', res);
                     res = JSON.parse(res);
                     status = (parseInt(res.carusel) == 1) ? "Contraer" : "Liberar";
                     $('#carusel span').html(status);
