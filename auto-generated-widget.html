@@ -186,12 +186,15 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 method: 'GET'
             })
             .done(function(res){
+                macro.status(res);
+                console.log("estados");
+                console.log(res);
                 res = JSON.parse(res);
-                status = res.carusel ? "Liberar Carusel" : "Contraer Carusel";
+                status = res.carusel ? "Contraer Carusel" : "Liberar Carusel";
                 $('#carusel').html(status);
-                status = res.brazo ? "Liberar Brazo" : "Contraer Brazo";
+                status = res.brazo ? "Contraer Brazo" : "Liberar Brazo";
                 $('#brazo').html(status);
-                status = res.husillo ? "Liberar Husillo" : "Contraer Husillo";
+                status = res.husillo ? "Contraer Husillo" : "Liberar Husillo";
                 $('#husillo').html(status);
             })
             .fail(function(err){
