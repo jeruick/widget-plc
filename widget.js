@@ -166,10 +166,13 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 res = JSON.parse(res);
                 status = res.carusel ? "Contraer Carusel" : "Liberar Carusel";
                 $('#carusel').html(status);
+                $('#carusel').attr('content',res);
                 status = res.brazo ? "Contraer Brazo" : "Liberar Brazo";
                 $('#brazo').html(status);
+                $('#brazo').attr('content',res);
                 status = res.husillo ? "Contraer Husillo" : "Liberar Husillo";
                 $('#husillo').html(status);
+                $('#husillo').attr('content',res);
             })
             .fail(function(err){
                 console.log(err);
@@ -234,9 +237,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             
             $('.select-pocket').change(this.onSelectPocket.bind(this));
             
-             $('.status-button').click(this.onChangeStatus.bind(this));
-           
-
+             $('#brazo').click(this.onChangeBrazo.bind(this));
+             $('#carusel').click(this.onChangeCarusel.bind(this));
+             $('#husillo').click(this.onChangeHusillo.bind(this));
         },
         onClearInstructionsClick: function(evt){
          
@@ -260,9 +263,35 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM6 i" + pocket + "\n");			
         }
         ,
-        onChangeStatus: function(evt){
+        onChangeBrazo: function(evt){
          
-          var element = $(this).attr('id');	
+        var element = $('#brazo').attr('content');	
+          
+           chilipeppr.publish(
+                "/com-chilipeppr-elem-flashmsg/flashmsg",
+                "Change Status",
+                element,
+                2000
+            );
+          
+        },
+        
+        onChangeCarusel: function(evt){
+         
+        var element = $('#carusel').attr('content');	
+          
+           chilipeppr.publish(
+                "/com-chilipeppr-elem-flashmsg/flashmsg",
+                "Change Status",
+                element,
+                2000
+            );
+          
+        },
+        
+        onChangeHusillo: function(evt){
+         
+        var element = $('#husillo').attr('content');	
           
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
