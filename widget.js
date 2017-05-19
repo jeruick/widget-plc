@@ -309,13 +309,13 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     res,
                     2000
                 );
-               /* res = JSON.parse(res);
+               res = JSON.parse(res);
                 if(res.status){
                     var newStatus = (status == 1) ? 0 : 1;
                     var newMessage = (status == 1) ? "Contraer " : "Liberar";
                     $(name + " span").html(newMessage);
                     $(name).attr('content', newStatus);
-                } */
+                } 
             })
             .fail(function(err){
                 chilipeppr.publish(
