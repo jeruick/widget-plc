@@ -329,6 +329,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         },
         
         sendToPlc: function(name , cmd, status){
+            status = parseInt(status);
             $.ajax({
             url: 'http://192.168.0.97?cmd=' + cmd,
             method: 'GET'
@@ -341,9 +342,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     2000
                 );
                res = JSON.parse(res);
-                if(res.status){
+                if(parseInt(res.status) == 1){
                     var newStatus = (status == 1) ? 0 : 1;
-                    var newMessage = (status == 1) ? "Contraer " : "Liberar";
+                    var newMessage = (status == 1) ? "Liberar " : "Contraer";
                     $(name + " span").html(newMessage);
                     $(name).attr('content', newStatus);
                 } 
