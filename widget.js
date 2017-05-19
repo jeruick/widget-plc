@@ -150,6 +150,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         
         loadButtonsStatus: function(){
             var status;
+            chilipeppr.publish(
+                    "/com-chilipeppr-elem-flashmsg/flashmsg",
+                    "ESTADO DEL PLC",
+                    "esatado",
+                    2000
+                );
             $.ajax({
                 url: 'http://192.168.0.97?cmd=s',
                 method: 'GET'
@@ -165,14 +171,14 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 macro.status(res);
                 res = JSON.parse(res);
                 status = res.carusel ? "Contraer Carusel" : "Liberar Carusel";
-                $('#carusel').html(status);
-                $('#carusel').attr('content',res);
+                $('#carusel span').html(status);
+                $('#carusel').attr('content',res.carusel);
                 status = res.brazo ? "Contraer Brazo" : "Liberar Brazo";
-                $('#brazo').html(status);
-                $('#brazo').attr('content',res);
+                $('#brazo span').html(status);
+                $('#brazo').attr('content',res.brazo);
                 status = res.husillo ? "Contraer Husillo" : "Liberar Husillo";
-                $('#husillo').html(status);
-                $('#husillo').attr('content',res);
+                $('#husillo span').html(status);
+                $('#husillo').attr('content',res.husillo);
             })
             .fail(function(err){
                 console.log(err);
@@ -265,8 +271,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         ,
         onChangeBrazo: function(evt){
          
-        var element = $('#brazo').attr('content');	
-          
+            var status = $('#brazo').attr('content');	
+            var name = "#brazo";
+            var cmd = (parseInt(status) == 1) ? 2 : 1;
+            
+            sendToPlc(name, cmd, parseInt(status));
+        
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
                 "Change Status",
@@ -278,7 +288,11 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         
         onChangeCarusel: function(evt){
          
-        var element = $('#carusel').attr('content');	
+            var status = $('#carusel').attr('content');	
+            var name = "#carusel";
+            var cmd = (parseInt(status) == 1) ? 4 : 3;
+            
+            sendToPlc(name, cmd, parseInt(status));	
           
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
@@ -291,7 +305,11 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         
         onChangeHusillo: function(evt){
          
-        var element = $('#husillo').attr('content');	
+        var status = $('#husillo').attr('content');	
+            var name = "#husillo";
+            var cmd = (parseInt(status) == 1) ? 6 : 5;
+            
+            sendToPlc(name, cmd, parseInt(status));	
           
            chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
@@ -302,6 +320,28 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
           
         },
         
+        sendToPlc: function(name , cmd, status){
+            $.ajax({
+            url: 'http://192.168.0.97?cmd=' + cmd,
+            method: 'GET'
+            })
+            .done(function(res){
+                if(res.status){
+                    var newStatus = (status == 1) ? 0 : 1;
+                    var newMessage = (status == 1) ? "Contraer " : "Liberar";
+                    $(name + " span").html(newMessage);
+                    $(name).attr('content', newStatus);
+                }
+            })
+            .fail(function(err){
+                chilipeppr.publish(
+                    "/com-chilipeppr-elem-flashmsg/flashmsg",
+                    "Change Status",
+                    "ERROR EN LA COMUNICACION CON EL PLC",
+                    2000
+                );
+            });
+        },
         /**
          * User options are available in this property for reference by your
          * methods. If any change is made on these options, please call
