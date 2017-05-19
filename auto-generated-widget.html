@@ -186,7 +186,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 method: 'GET'
             })
             .done(function(res){
-                macro.status(res);
+                 chilipeppr.publish(
+                    "/com-chilipeppr-elem-flashmsg/flashmsg",
+                    "STATUS",
+                    res,
+                    1000
+                );
                 console.log("estados");
                 console.log(res);
                 res = JSON.parse(res);
