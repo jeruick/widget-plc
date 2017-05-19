@@ -168,7 +168,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     res = JSON.parse(res);
                     status = (parseInt(res.carrusel) == 1) ? "Contraer" : "Liberar";
                     $('#carusel span').html(status);
-                    if(status) $('.select-pocket').attr('disabled');
+                    if(parseInt(res.carrusel)) $('.select-pocket').attr('disabled');
                     $('#carusel').attr('content',res.carrusel);
                     status = (parseInt(res.brazo) == 1) ? "Contraer" : "Liberar";
                     $('#brazo span').html(status);
