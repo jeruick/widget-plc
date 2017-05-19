@@ -233,6 +233,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
             
             $('.select-pocket').change(this.onSelectPocket.bind(this));
+            
+             $('.status-button').click(this.onChangeStatus.bind(this));
            
 
         },
@@ -258,16 +260,17 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM6 i" + pocket + "\n");			
         }
         ,
-        onPlcHomeClick: function(evt){
+        onChangeStatus: function(evt){
          
-          chilipeppr.publish(
+          var element = $(this).attr('id');	
+          
+           chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
-                "PLC HOME",
-                "Wait while PLC is making home.",
+                "Change Status",
+                element,
                 2000
             );
-            
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/tty.usbmodem1421  a\n");			
+          
         },
         
         /**
