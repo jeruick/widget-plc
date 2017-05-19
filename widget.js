@@ -150,12 +150,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         
         loadButtonsStatus: function(){
             var status;
-            chilipeppr.publish(
-                    "/com-chilipeppr-elem-flashmsg/flashmsg",
-                    "ESTADO DEL PLC",
-                    "esatado",
-                    2000
-                );
+         
             $.ajax({
                 url: 'http://192.168.0.97?cmd=s',
                 method: 'GET'
