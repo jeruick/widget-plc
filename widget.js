@@ -162,7 +162,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     2000
                 );
                 console.log("estados");
-                console.log(res);
+                macro.status(res);
                 res = JSON.parse(res);
                 status = res.carusel ? "Contraer Carusel" : "Liberar Carusel";
                 $('#carusel').html(status);
