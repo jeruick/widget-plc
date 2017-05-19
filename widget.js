@@ -159,7 +159,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     "/com-chilipeppr-elem-flashmsg/flashmsg",
                     "STATUS",
                     res,
-                    1000
+                    2000
                 );
                 console.log("estados");
                 console.log(res);
