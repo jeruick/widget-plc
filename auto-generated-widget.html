@@ -296,7 +296,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 2000
             );
             
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send COM6 i" + pocket + "\n");			
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
         }
         ,
         onChangeBrazo: function(evt){
