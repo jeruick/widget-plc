@@ -258,6 +258,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         },
         onSelectPocket: function(evt){
             var pocket = $(".select-pocket").val();
+            console.log('selected Pocket: ' + pocket );
             chilipeppr.publish(
                 "/com-chilipeppr-elem-flashmsg/flashmsg",
                 "Select Pocket",
