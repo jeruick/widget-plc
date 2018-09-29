@@ -265,8 +265,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 "Pocket " + pocket  + " Selected",
                 2000
             );
-            console.log("/dev/ttyACM0");
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
+            console.log("/dev/ttyACM1");
+            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM1 i" + pocket + "\n");			
         }
         ,
         onChangeBrazo: function(evt){
