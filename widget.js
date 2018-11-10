@@ -279,8 +279,10 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             if(typeof sensor_status != 'undefined')
             {
                 var sensor_status = JSON.parse(sensor_status);
+                
                 if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
                 {
+                    alert('error sensor');
                     var msg = "";
                     msg += (sensor_status.brazo) ? " Brazo " : '';
                     msg += (sensor_status.husillo) ? " Husillo " : '';
@@ -294,12 +296,14 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 }
                 else
                 {
+                    alert('ejecutar');
                     chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
                 }
                 
             }
             else
             {
+                alert('status no definido');
                 chilipeppr.publish(
                         "/com-chilipeppr-elem-flashmsg/flashmsg",
                         "ERROR ESTADO DE LOS SENSORES",
