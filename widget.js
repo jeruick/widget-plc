@@ -191,7 +191,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                         );   
                     }
                     
-                    localStorage.setItem('sensor_status', {'brazo': res.brazo, 'carrusel': res.carrusel, 'husillo': res.husillo});
+                    localStorage.setItem('sensor_status', {brazo: res.brazo, carrusel: res.carrusel, husillo: res.husillo});
                 }
                 
             })
