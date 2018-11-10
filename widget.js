@@ -274,15 +274,41 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         },
         onSelectPocket: function(evt){
             var pocket = $(".select-pocket").val();
-            console.log('selected Pocket: ' + pocket );
-            chilipeppr.publish(
-                "/com-chilipeppr-elem-flashmsg/flashmsg",
-                "Select Pocket",
-                "Pocket " + pocket  + " Selected",
-                3000
-            );
-            console.log("/dev/ttyACM0");
-            chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
+            
+            var sensor_status = localStorage.getItem('sensor_status');
+            if(typeof sensor_status != 'undefined')
+            {
+                var sensor_status = JSON.parse(sensor_status);
+                if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
+                {
+                    var msg = "";
+                    msg += (sensor_status.brazo) ? " Brazo " : '';
+                    msg += (sensor_status.husillo) ? " Husillo " : '';
+                    msg += (sensor_status.carrusel) ? " Carrusel " : '';
+                     chilipeppr.publish(
+                        "/com-chilipeppr-elem-flashmsg/flashmsg",
+                        "ERROR ESTADO DE LOS SENSORES",
+                        "Por favor revisar el estado de los sensores" + msg,
+                        3000
+                    );      
+                }
+                else
+                {
+                    chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
+                }
+                
+            }
+            else
+            {
+                chilipeppr.publish(
+                        "/com-chilipeppr-elem-flashmsg/flashmsg",
+                        "ERROR ESTADO DE LOS SENSORES",
+                        "No se guardo el estado de los sensores por favor recarga la pagina de nuevo" + msg,
+                        3000
+                    );
+            }
+            
+            
         }
         ,
         onChangeBrazo: function(evt){
@@ -290,40 +316,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var status = $('#brazo').attr('content');	
             var name = "#brazo";
             var cmd = (parseInt(status) == 1) ? 4 : 3;
-            var sensor_status = localStorage.getItem('sensor_status');
-            if(typeof sensor_status != 'undefined')
-            {
-                var sensor_status = JSON.parse(sensor_status);
-                if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
-                {
-                    var msg = "";
-                    msg += (sensor_status.brazo) ? " Brazo " : '';
-                    msg += (sensor_status.husillo) ? " Husillo " : '';
-                    msg += (sensor_status.carrusel) ? " Carrusel " : '';
-                     chilipeppr.publish(
-                        "/com-chilipeppr-elem-flashmsg/flashmsg",
-                        "ERROR ESTADO DE LOS SENSORES",
-                        "Por favor revisar el estado de los sensores" + msg,
-                        3000
-                    );      
-                }
-                else
-                {
-                    this.sendToPlc(name, cmd, parseInt(status));
-                }
-                
-            }
-            else
-            {
-                chilipeppr.publish(
-                        "/com-chilipeppr-elem-flashmsg/flashmsg",
-                        "ERROR ESTADO DE LOS SENSORES",
-                        "No se guardo el estado de los sensores por favor recarga la pagina de nuevo" + msg,
-                        3000
-                    );
-            }
-            
-          
+            this.sendToPlc(name, cmd, parseInt(status));
         },
         
         onChangeCarusel: function(evt){
@@ -331,39 +324,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var status = $('#carusel').attr('content');	
             var name = "#carusel";
             var cmd = (parseInt(status) == 1) ? 2 : 1;
+            this.sendToPlc(name, cmd, parseInt(status));
             
-            var sensor_status = localStorage.getItem('sensor_status');
-            if(typeof sensor_status != 'undefined')
-            {
-                var sensor_status = JSON.parse(sensor_status);
-                if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
-                {
-                    var msg = "";
-                    msg += (sensor_status.brazo) ? " Brazo " : '';
-                    msg += (sensor_status.husillo) ? " Husillo " : '';
-                    msg += (sensor_status.carrusel) ? " Carrusel " : '';
-                     chilipeppr.publish(
-                        "/com-chilipeppr-elem-flashmsg/flashmsg",
-                        "ERROR ESTADO DE LOS SENSORES",
-                        "Por favor revisar el estado de los sensores" + msg,
-                        3000
-                    );      
-                }
-                else
-                {
-                    this.sendToPlc(name, cmd, parseInt(status));	
-                }
-                
-            }
-            else
-            {
-                chilipeppr.publish(
-                        "/com-chilipeppr-elem-flashmsg/flashmsg",
-                        "ERROR ESTADO DE LOS SENSORES",
-                        "No se guardo el estado de los sensores por favor recarga la pagina de nuevo" + msg,
-                        3000
-                    );
-            }
             
           
         },
@@ -374,38 +336,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var name = "#husillo";
             var cmd = (parseInt(status) == 1) ? 6 : 5;
             
-            var sensor_status = localStorage.getItem('sensor_status');
-            if(typeof sensor_status != 'undefined')
-            {
-                var sensor_status = JSON.parse(sensor_status);
-                if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
-                {
-                    var msg = "";
-                    msg += (sensor_status.brazo) ? " Brazo " : '';
-                    msg += (sensor_status.husillo) ? " Husillo " : '';
-                    msg += (sensor_status.carrusel) ? " Carrusel " : '';
-                     chilipeppr.publish(
-                        "/com-chilipeppr-elem-flashmsg/flashmsg",
-                        "ERROR ESTADO DE LOS SENSORES",
-                        "Por favor revisar el estado de los sensores" + msg,
-                        3000
-                    );      
-                }
-                else
-                {
-                    this.sendToPlc(name, cmd, parseInt(status));	
-                }
-                
-            }
-            else
-            {
-                chilipeppr.publish(
-                        "/com-chilipeppr-elem-flashmsg/flashmsg",
-                        "ERROR ESTADO DE LOS SENSORES",
-                        "No se guardo el estado de los sensores por favor recarga la pagina de nuevo" + msg,
-                        3000
-                    );
-            }
+            this.sendToPlc(name, cmd, parseInt(status));
           
         },
         
