@@ -281,9 +281,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 {
                     
                     var msg = "";
-                    msg += (sensor_status.brazo) ? " Brazo " : '';
-                    msg += (sensor_status.husillo) ? " Husillo " : '';
-                    msg += (sensor_status.carrusel) ? " Carrusel " : '';
+                    msg += (sensor_status.brazo) ? " Brazo " + sensor_status.brazo : '';
+                    msg += (sensor_status.husillo) ? " Husillo " + sensor_status.husillo : '';
+                    msg += (sensor_status.carrusel) ? " Carrusel " + sensor_status.carrusel : '';
                     alert("Por favor revisar el estado de los sensores" + msg);
                 }
                 else
