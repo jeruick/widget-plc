@@ -177,7 +177,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     $('#husillo span').html(status);
                     $('#husillo').attr('content',res.husillo); 
                     
-                    if(res.brazo == 1 || res.carrusel == 1 || res.husillo)
+                    if(res.brazo == 1 || res.carrusel == 1 || res.husillo == 1)
                     {
                         var msg = "";
                         msg += (res.brazo) ? " Brazo " : '';
