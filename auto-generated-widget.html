@@ -211,9 +211,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     if(res.brazo == 1 || res.carrusel == 1 || res.husillo == 1)
                     {
                         var msg = "";
-                        msg += (res.brazo) ? " Brazo " : '';
-                        msg += (res.husillo) ? " Husillo " : '';
-                        msg += (res.carrusel) ? " Carrusel " : '';
+                        msg += (res.brazo == 1) ? " Brazo " : '';
+                        msg += (res.husillo == 1) ? " Husillo " : '';
+                        msg += (res.carrusel == 1) ? " Carrusel " : '';
                         
                         alert("Revisar los sensores liberados: " + msg); 
                     }
@@ -312,9 +312,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 {
                     
                     var msg = "";
-                    msg += (sensor_status.brazo) ? " Brazo "  : '';
-                    msg += (sensor_status.husillo) ? " Husillo " : '';
-                    msg += (sensor_status.carrusel) ? " Carrusel "  : '';
+                    msg += (sensor_status.brazo == 1) ? " Brazo "  : '';
+                    msg += (sensor_status.husillo == 1) ? " Husillo " : '';
+                    msg += (sensor_status.carrusel == 1) ? " Carrusel "  : '';
                     alert("Por favor revisar el estado de los sensores" + msg);
                 }
                 else
