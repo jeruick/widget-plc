@@ -290,7 +290,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var status = $('#brazo').attr('content');	
             var name = "#brazo";
             var cmd = (parseInt(status) == 1) ? 4 : 3;
-            var sensor_status = localStorage.get('sensor_status');
+            var sensor_status = localStorage.getItem('sensor_status');
             if(typeof sensor_status != 'undefined')
             {
                 var sensor_status = JSON.parse(sensor_status);
@@ -332,7 +332,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var name = "#carusel";
             var cmd = (parseInt(status) == 1) ? 2 : 1;
             
-            var sensor_status = localStorage.get('sensor_status');
+            var sensor_status = localStorage.getItem('sensor_status');
             if(typeof sensor_status != 'undefined')
             {
                 var sensor_status = JSON.parse(sensor_status);
@@ -374,7 +374,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             var name = "#husillo";
             var cmd = (parseInt(status) == 1) ? 6 : 5;
             
-            var sensor_status = localStorage.get('sensor_status');
+            var sensor_status = localStorage.getItem('sensor_status');
             if(typeof sensor_status != 'undefined')
             {
                 var sensor_status = JSON.parse(sensor_status);
