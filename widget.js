@@ -175,7 +175,10 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     $('#brazo').attr('content',res.brazo);
                     status = (parseInt(res.husillo) == 1) ? "Contraer" : "Liberar";
                     $('#husillo span').html(status);
-                    $('#husillo').attr('content',res.husillo);    
+                    $('#husillo').attr('content',res.husillo); 
+                    
+                    
+                    localStorage.setItem('sensor_status', {'brazo': res.brazo, 'carrusel': res.carrusel, 'husillo': res.husillo});
                 }
                 
             })
