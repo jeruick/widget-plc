@@ -390,10 +390,24 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     var newMessage = (status == 1) ? "Liberar " : "Contraer";
                     $(name + " span").html(newMessage);
                     $(name).attr('content', newStatus);
+                    
                     if(name == '#carusel'){
+                        var sensor_status = JSON.parse(localStorage.getItem('sensor_status'));
+                        sensor_status.carrusel = newStatus;
                         if(newStatus == 1) $('.select-pocket').attr('disabled', 'disabled');
                         else $('.select-pocket').removeAttr('disabled');
                     }
+                    else if(name == '#brazo')
+                    {
+                        var sensor_status = JSON.parse(localStorage.getItem('sensor_status'));
+                        sensor_status.brazo = newStatus;
+                    }
+                    else
+                    {
+                        var sensor_status = JSON.parse(localStorage.getItem('sensor_status'));
+                        sensor_status.husillo = newStatus;
+                    }
+                    localStorage.setItem('sensor_status', JSON.stringify(sensor_status));
                 } 
             })
             .fail(function(err){
