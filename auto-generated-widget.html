@@ -216,8 +216,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                         msg += (res.carrusel) ? " Carrusel " : '';
                          chilipeppr.publish(
                             "/com-chilipeppr-elem-flashmsg/flashmsg",
-                            "Error Estado de Sensores",
-                            "Por favor revisar el estado de los sensores",
+                            "ERROR ESTADO DE LOS SENSORES",
+                            "Por favor revisar el estado de los sensores" + msg,
                             1000
                         );   
                     }
