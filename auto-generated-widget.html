@@ -215,7 +215,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                         msg += (res.husillo) ? " Husillo " : '';
                         msg += (res.carrusel) ? " Carrusel " : '';
                         
-                        alert("Por favor revisar el estado de los sensores" + msg); 
+                        alert("Revisar los sensores liberados: " + msg); 
                     }
                     
                     localStorage.setItem('sensor_status', JSON.stringify({'brazo': res.brazo, 'carrusel': res.carrusel, 'husillo': res.husillo}));
