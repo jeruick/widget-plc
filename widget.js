@@ -177,6 +177,19 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     $('#husillo span').html(status);
                     $('#husillo').attr('content',res.husillo); 
                     
+                    if(res.brazo == 1 || res.carrusel == 1 || res.husillo)
+                    {
+                        var msg = "";
+                        msg += (res.brazo) ? " Brazo " : '';
+                        msg += (res.husillo) ? " Husillo " : '';
+                        msg += (res.carrusel) ? " Carrusel " : '';
+                         chilipeppr.publish(
+                            "/com-chilipeppr-elem-flashmsg/flashmsg",
+                            "Error Estado de Sensores",
+                            "Por favor revisar el estado de los sensores",
+                            1000
+                        );   
+                    }
                     
                     localStorage.setItem('sensor_status', {'brazo': res.brazo, 'carrusel': res.carrusel, 'husillo': res.husillo});
                 }
