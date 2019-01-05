@@ -273,8 +273,6 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         onSelectLastPocket: function(evt)
         {
             var lastSel = $(".select-pocket option:selected").val();
-            console.log('shit');
-            console.log('last select: ' + lastSel);
             localStorage.setItem('last-pocket', lastSel);
         },
         onSelectPocket: function(evt){
@@ -287,9 +285,8 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 
                 if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
                 {
-                    evt.preventDefault();
-                    var lastSel = localStorage.setItem('last-pocket');
-                    console.log('last select: ' + lastSel);
+                    
+                    var lastSel = localStorage.getItem('last-pocket');
                     $(".select-pocket").val(lastSel);
                     var msg = "";
                     msg += (sensor_status.brazo == 1) ? " Brazo "  : '';
