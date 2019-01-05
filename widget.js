@@ -255,8 +255,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             $('.select-pocket').click(this.onSelectLastPocket.bind(this));
             $('.select-pocket').change(this.onSelectPocket.bind(this));
             
-            var lastSel = $(".select-pocket option:selected").val();
-            localStorage.setItem('last-pocket', lastSel);
+            selectCurrentPocket();
             
              $('#brazo').click(this.onChangeBrazo.bind(this));
              $('#carusel').click(this.onChangeCarusel.bind(this));
