@@ -273,6 +273,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
         onSelectLastPocket: function(evt)
         {
             var lastSel = $(".select-pocket option:selected").val();
+            console.log('shit');
             console.log('last select: ' + lastSel);
             localStorage.setItem('last-pocket', lastSel);
         },
