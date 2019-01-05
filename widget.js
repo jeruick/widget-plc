@@ -290,6 +290,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                     evt.preventDefault();
                     var lastSel = localStorage.setItem('last-pocket');
                     console.log('last select: ' + lastSel);
+                    $(".select-pocket").val(lastSel);
                     var msg = "";
                     msg += (sensor_status.brazo == 1) ? " Brazo "  : '';
                     msg += (sensor_status.husillo == 1) ? " Husillo " : '';
