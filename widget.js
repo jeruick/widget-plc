@@ -252,8 +252,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             // when the callback is called
          
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
-            
+            $('.select-pocket').click(this.onSelectLastPocket.bind(this));
             $('.select-pocket').change(this.onSelectPocket.bind(this));
+            
             
              $('#brazo').click(this.onChangeBrazo.bind(this));
              $('#carusel').click(this.onChangeCarusel.bind(this));
@@ -269,6 +270,12 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 2000
             );
         },
+        onSelectLastPocket: function(evt)
+        {
+            var lastSel = $(".select-pocket option:selected");
+            console.log('last select: ' + lastSel);
+            localStorage.setItem('last-pocket', lastSel);
+        },
         onSelectPocket: function(evt){
             var pocket = $(".select-pocket").val();
             
@@ -279,7 +286,9 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 
                 if(sensor_status.brazo == 1 || sensor_status.husillo == 1 || sensor_status.carrusel == 1)
                 {
-                    
+                    evt.preventDefault();
+                    var lastSel = localStorage.setItem('last-pocket');
+                    console.log('last select: ' + lastSel);
                     var msg = "";
                     msg += (sensor_status.brazo == 1) ? " Brazo "  : '';
                     msg += (sensor_status.husillo == 1) ? " Husillo " : '';
