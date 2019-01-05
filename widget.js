@@ -254,7 +254,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             $('#clearInstructions').click(this.onClearInstructionsClick.bind(this));
             $('.select-pocket').change(this.onSelectPocket.bind(this));
             
-            selectCurrentPocket();
+            this.selectCurrentPocket();
             
              $('#brazo').click(this.onChangeBrazo.bind(this));
              $('#carusel').click(this.onChangeCarusel.bind(this));
@@ -295,7 +295,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 }
                 else
                 {
-                    selectCurrentPocket();
+                    this.selectCurrentPocket();
                     chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
                 }
                 
