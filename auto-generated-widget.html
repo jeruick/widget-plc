@@ -286,10 +286,16 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
             $('.select-pocket').click(this.onSelectLastPocket.bind(this));
             $('.select-pocket').change(this.onSelectPocket.bind(this));
             
+            var lastSel = $(".select-pocket option:selected").val();
+            localStorage.setItem('last-pocket', lastSel);
             
              $('#brazo').click(this.onChangeBrazo.bind(this));
              $('#carusel').click(this.onChangeCarusel.bind(this));
              $('#husillo').click(this.onChangeHusillo.bind(this));
+        },
+        selectCurrentPocket: function(){
+            var lastSel = $(".select-pocket option:selected").val();
+            localStorage.setItem('last-pocket', lastSel);  
         },
         onClearInstructionsClick: function(evt){
          
@@ -300,11 +306,6 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 "PLC Instructions Cleared.",
                 2000
             );
-        },
-        onSelectLastPocket: function(evt)
-        {
-            var lastSel = $(".select-pocket option:selected").val();
-            localStorage.setItem('last-pocket', lastSel);
         },
         onSelectPocket: function(evt){
             var pocket = $(".select-pocket").val();
@@ -327,7 +328,7 @@ cpdefine("inline:com-chilipeppr-widget-plc", ["chilipeppr_ready", /* other depen
                 }
                 else
                 {
-                    
+                    selectCurrentPocket();
                     chilipeppr.publish("/com-chilipeppr-widget-serialport/ws/send", "send /dev/ttyACM0 i" + pocket + "\n");			
                 }
                 
